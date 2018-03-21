@@ -298,7 +298,7 @@ open class SkyFloatingLabelTextFieldWithIcon: SkyFloatingLabelTextField {
      */
     open override func lineViewRectForBounds(_ bounds: CGRect, editing: Bool) -> CGRect {
         let height = editing ? selectedLineHeight : lineHeight
-        return CGRect(x: iconWidth + iconMarginLeft, y: bounds.size.height - height, width: bounds.size.width, height: height)
+        return CGRect(x: iconWidth + iconMarginLeft, y: bounds.size.height - height, width: bounds.size.width - iconWidth - iconMarginLeft, height: height)
     }
 
     fileprivate func updateFrame() {
