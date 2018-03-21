@@ -288,6 +288,18 @@ open class SkyFloatingLabelTextFieldWithIcon: SkyFloatingLabelTextField {
         super.layoutSubviews()
         updateFrame()
     }
+    
+    /**
+     Calculate the bounds for the bottom line of the control.
+     Override to create a custom size bottom line in the textbox.
+     - parameter bounds: The current bounds of the line
+     - parameter editing: True if the control is selected or highlighted
+     - returns: The rectangle that the line bar should render in
+     */
+    open override func lineViewRectForBounds(_ bounds: CGRect, editing: Bool) -> CGRect {
+        let height = editing ? selectedLineHeight : lineHeight
+        return CGRect(x: iconWidth + iconMarginLeft, y: bounds.size.height - height, width: bounds.size.width, height: height)
+    }
 
     fileprivate func updateFrame() {
         let textWidth: CGFloat = bounds.size.width
