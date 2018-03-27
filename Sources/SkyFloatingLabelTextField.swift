@@ -321,6 +321,7 @@ open class SkyFloatingLabelTextField: UITextField { // swiftlint:disable:this ty
         titleLabel.font = titleFont
         titleLabel.alpha = 0.0
         titleLabel.textColor = titleColor
+        titleLabel.adjustsFontSizeToFitWidth = true
 
         addSubview(titleLabel)
         self.titleLabel = titleLabel
