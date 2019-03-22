@@ -1,24 +1,18 @@
 language: objective-c
-
-branches:
- only:
- - master
-
 xcode_project: SkyFloatingLabelTextField/SkyFloatingLabelTextField.xcodeproj
 xcode_scheme: SkyFloatingLabelTextField
-osx_image: xcode9
-xcode_sdk: iphonesimulator11.1
-
-before_install:
-    - gem install specific_install
-    - gem specific_install -l https://github.com/venmo/slather.git
-    - export IOS_SIMULATOR_UDID=$(instruments -s devices | grep "$ios_device ($ios_version)" | sed -E 's/.*\[([0-9A-F-]+)\].*/\1/g')
-    - echo "Prelaunching iOS simulator $IOS_SIMULATOR_UDID"
-    - open -a "simulator" --args -CurrentDeviceUDID $IOS_SIMULATOR_UDID
-
 script:
-  - xcodebuild clean build test -project SkyFloatingLabelTextField/SkyFloatingLabelTextField.xcodeproj -scheme SkyFloatingLabelTextField -destination 'platform=iOS Simulator,name=iPhone 6' GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES
-  - swiftlint
+  - bundle exec rake ci
+matrix:
+  include:
+    - osx_image: xcode10
+      env: SWIFT=4.2 BUILD_SDK=iphonesimulator12.0 DESTINATION="platform=iOS Simulator,name=iPhone 8"
+    - osx_image: xcode9.2
+      env: SWIFT=4.0 BUILD_SDK=iphonesimulator11.2 DESTINATION="platform=iOS Simulator,name=iPhone 8"
+    - osx_image: xcode9.4
+      env: SWIFT=4.1 BUILD_SDK=iphonesimulator11.4 DESTINATION="platform=iOS Simulator,name=iPhone 8"
+    - osx_image: xcode9.4
+      env: SWIFT=3.3 BUILD_SDK=iphonesimulator11.4 DESTINATION="platform=iOS Simulator,name=iPhone 8"
+    - osx_image: xcode8.3
+      env: SWIFT=3.1 BUILD_SDK=iphonesimulator10.3 DESTINATION="platform=iOS Simulator,name=iPhone 7"
 
-after_success:
-  - cd $TRAVIS_BUILD_DIR && slather

@@ -1,4 +1,4 @@
-//  Copyright 2016-2017 Skyscanner Ltd
+//  Copyright 2016-2019 Skyscanner Ltd
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -59,7 +59,14 @@ class SkyFloatingLabelTextFieldTests: XCTestCase { // swiftlint:disable:this typ
         floatingLabelTextField.placeholderColor = customColor
 
         // then
-        #if swift(>=4.0)
+        #if swift(>=4.2)
+            XCTAssertEqual(
+                floatingLabelTextField.attributedPlaceholder!.attribute(
+                    NSAttributedString.Key.foregroundColor, at: 0, effectiveRange: &fullRange
+                    ) as? UIColor,
+                customColor
+            )
+        #elseif swift(>=4.0)
             XCTAssertEqual(
                 floatingLabelTextField.attributedPlaceholder!.attribute(
                     NSAttributedStringKey.foregroundColor, at: 0, effectiveRange: &fullRange
@@ -103,12 +110,34 @@ class SkyFloatingLabelTextFieldTests: XCTestCase { // swiftlint:disable:this typ
         XCTAssertEqual(floatingLabelTextField.titleLabel.textColor, self.customColor)
     }
 
+    func test_whenSettingTitleErrorColor_withErrorMessageBeingSet_thenTitleLabelTextColorIsChangedToThisColor() {
+        // given
+        floatingLabelTextField.errorMessage = "test"
+
+        // when
+        floatingLabelTextField.titleErrorColor = self.customColor
+
+        // then
+        XCTAssertEqual(floatingLabelTextField.titleLabel.textColor, self.customColor)
+    }
+
     func test_whenSettingErrorColor_withErrorMessageBeingEmpty_thenTitleLabelTextColorIsNotChangedToThisColor() {
         // given
         floatingLabelTextField.errorMessage = ""
 
         // when
         floatingLabelTextField.errorColor = self.customColor
+
+        // then
+        XCTAssertNotEqual(floatingLabelTextField.titleLabel.textColor, self.customColor)
+    }
+
+    func test_whenSettingTitleErrorColor_withErrorMessageBeingEmpty_thenTitleLabelTextColorIsNotChangedToThisColor() {
+        // given
+        floatingLabelTextField.errorMessage = ""
+
+        // when
+        floatingLabelTextField.titleErrorColor = self.customColor
 
         // then
         XCTAssertNotEqual(floatingLabelTextField.titleLabel.textColor, self.customColor)
@@ -125,12 +154,34 @@ class SkyFloatingLabelTextFieldTests: XCTestCase { // swiftlint:disable:this typ
         XCTAssertNotEqual(floatingLabelTextField.titleLabel.textColor, self.customColor)
     }
 
+    func test_whenSettingTitleErrorColor_withErrorMessageBeingNil_thenTitleLabelTextColorIsNotChangedToThisColor() {
+        // given
+        floatingLabelTextField.errorMessage = nil
+
+        // when
+        floatingLabelTextField.titleErrorColor = self.customColor
+
+        // then
+        XCTAssertNotEqual(floatingLabelTextField.titleLabel.textColor, self.customColor)
+    }
+
     func test_whenSettingErrorColor_withErrorMessageBeingSet_thenLineViewBackgroundColorIsChangedToThisColor() {
         // given
         floatingLabelTextField.errorMessage = "test"
 
         // when
         floatingLabelTextField.errorColor = self.customColor
+
+        // then
+        XCTAssertEqual(floatingLabelTextField.lineView.backgroundColor, self.customColor)
+    }
+
+    func test_whenSettingLineErrorColor_withErrorMessageBeingSet_thenLineViewBackgroundColorIsChangedToThisColor() {
+        // given
+        floatingLabelTextField.errorMessage = "test"
+
+        // when
+        floatingLabelTextField.lineErrorColor = self.customColor
 
         // then
         XCTAssertEqual(floatingLabelTextField.lineView.backgroundColor, self.customColor)
@@ -169,7 +220,14 @@ class SkyFloatingLabelTextFieldTests: XCTestCase { // swiftlint:disable:this typ
         floatingLabelTextField.disabledColor = self.customColor
 
         // then
-        #if swift(>=4.0)
+        #if swift(>=4.2)
+            XCTAssertNotEqual(
+                floatingLabelTextField.attributedPlaceholder!.attribute(
+                    NSAttributedString.Key.foregroundColor, at: 0, effectiveRange: &fullRange
+                    ) as? UIColor,
+                customColor
+            )
+        #elseif swift(>=4.0)
             XCTAssertNotEqual(
                 floatingLabelTextField.attributedPlaceholder!.attribute(
                     NSAttributedStringKey.foregroundColor, at: 0, effectiveRange: &fullRange
@@ -219,7 +277,14 @@ class SkyFloatingLabelTextFieldTests: XCTestCase { // swiftlint:disable:this typ
         floatingLabelTextField.disabledColor = self.customColor
 
         // then
-        #if swift(>=4.0)
+        #if swift(>=4.2)
+            XCTAssertEqual(
+                floatingLabelTextField.attributedPlaceholder!.attribute(
+                    NSAttributedString.Key.foregroundColor, at: 0, effectiveRange: &fullRange
+                    ) as? UIColor,
+                customColor
+            )
+        #elseif swift(>=4.0)
             XCTAssertEqual(
                 floatingLabelTextField.attributedPlaceholder!.attribute(
                     NSAttributedStringKey.foregroundColor, at: 0, effectiveRange: &fullRange
@@ -260,7 +325,16 @@ class SkyFloatingLabelTextFieldTests: XCTestCase { // swiftlint:disable:this typ
         floatingLabelTextField.placeholderFont = customFont
 
         // then
-        #if swift(>=4.0)
+        #if swift(>=4.2)
+            XCTAssertEqual(
+                floatingLabelTextField.attributedPlaceholder!.attribute(
+                    NSAttributedString.Key.font,
+                    at: 0,
+                    effectiveRange: &fullRange
+                    ) as? UIFont,
+                customFont
+            )
+        #elseif swift(>=4.0)
             XCTAssertEqual(
                 floatingLabelTextField.attributedPlaceholder!.attribute(
                     NSAttributedStringKey.font,
@@ -698,7 +772,7 @@ class SkyFloatingLabelTextFieldTests: XCTestCase { // swiftlint:disable:this typ
         let result = floatingLabelTextField.delegate!.textField!(
             floatingLabelTextField,
             shouldChangeCharactersIn: NSRange(),
-            replacementString:""
+            replacementString: ""
         )
 
         // then

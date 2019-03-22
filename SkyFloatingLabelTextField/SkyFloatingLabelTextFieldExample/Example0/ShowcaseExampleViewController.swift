@@ -1,4 +1,4 @@
-//  Copyright 2016-2017 Skyscanner Ltd
+//  Copyright 2016-2019 Skyscanner Ltd
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -8,8 +8,8 @@
 //
 //  Unless required by applicable law or agreed to in writing, software distributed under the
 //  License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
-//  either express or implied. See the License for the specific language governing permissions and
-//  limitations under the License.
+//  either express or implied. See the License for the specific language governing permissions
+//  and limitations under the License.
 
 import UIKit
 
@@ -245,7 +245,7 @@ class ShowcaseExampleViewController: UIViewController, UITextFieldDelegate {
 
         // When pressing return, move to the next field
         let nextTag = textField.tag + 1
-        if let nextResponder = textField.superview?.viewWithTag(nextTag) as UIResponder! {
+        if let nextResponder = textField.superview?.viewWithTag(nextTag) {
             nextResponder.becomeFirstResponder()
         } else {
             textField.resignFirstResponder()
@@ -263,7 +263,7 @@ class ShowcaseExampleViewController: UIViewController, UITextFieldDelegate {
             return
         }
 
-        if email.characters.isEmpty {
+        if email.isEmpty {
             emailField.errorMessage = nil
         } else if !validateEmail(email) {
             emailField.errorMessage = NSLocalizedString(

@@ -1,6 +1,38 @@
 Master
 ------
 
+v3.5.0
+-----
+
+* Added support for template images. [#274](https://github.com/Skyscanner/SkyFloatingLabelTextField/pull/274).
+
+v3.6.0
+------
+
+* Added support for Swift 4.2 and Xcode 10. See [#239](https://github.com/Skyscanner/SkyFloatingLabelTextField/pull/216).
+
+v3.5.2
+------
+
+* Fixed crash when overriding certain properties [#216](https://github.com/Skyscanner/SkyFloatingLabelTextField/pull/216). Thanks to [alextov](https://github.com/alextov).
+* Expose `errorMessage` to Objective-C and Storyboard [#218](https://github.com/Skyscanner/SkyFloatingLabelTextField/pull/218). Thanks to [niveuseverto](https://github.com/niveuseverto).
+
+v3.5.1
+------
+
+* Prevent potential crash when `self.font` is `nil`. This might cause the component to render incorrectly, but it will not crash which is preferable. See [#186](https://github.com/Skyscanner/SkyFloatingLabelTextField/issues/186)
+
+v3.5.0
+------
+
+* Marked `isLTRLanguage` with `@objc` so it can be set from Objective-C code [#200](https://github.com/Skyscanner/SkyFloatingLabelTextField/pull/200). Thanks to [behdad-keynejad](https://github.com/behdad-keynejad)
+* Added support for different colors for line, title, text when error is set [#208](https://github.com/Skyscanner/SkyFloatingLabelTextField/pull/208). Thanks to [InbarSletean](https://github.com/InbarSletean)
+
+v3.4.1
+-------
+
+* Use `localizedUppercase` for `titleFormatter` by default when available. Thanks to [canaksoy](https://github.com/canaksoy).
+
 v3.4.0
 ------
 
