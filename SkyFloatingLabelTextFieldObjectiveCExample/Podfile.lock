@@ -1,12 +1,21 @@
 PODS:
-  - SkyFloatingLabelTextField (3.1.0)
+  - SkyFloatingLabelTextField (3.7.0)
 
 DEPENDENCIES:
-  - SkyFloatingLabelTextField (~> 3.0)
+  - SkyFloatingLabelTextField (from `https://github.com/sheff1422/SkyFloatingLabelTextField.git`)
+
+EXTERNAL SOURCES:
+  SkyFloatingLabelTextField:
+    :git: https://github.com/sheff1422/SkyFloatingLabelTextField.git
+
+CHECKOUT OPTIONS:
+  SkyFloatingLabelTextField:
+    :commit: a851af7b320f0183a08fafbe1faa10e52b3f94cc
+    :git: https://github.com/sheff1422/SkyFloatingLabelTextField.git
 
 SPEC CHECKSUMS:
-  SkyFloatingLabelTextField: 26a92ad407044dd5a7c3e4e348738ff0991514fe
+  SkyFloatingLabelTextField: 0cb6be6b21d6b19d8ad2ba82e5a2cc278168cce7
 
-PODFILE CHECKSUM: 74aba38e4a94fc67a930b2126b74202a8da7d6d8
+PODFILE CHECKSUM: c3d22170f5609b65bdcd309660880e89003fceda
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.11.2

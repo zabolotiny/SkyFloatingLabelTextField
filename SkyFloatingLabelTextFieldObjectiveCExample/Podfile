@@ -1,5 +1,5 @@
 use_frameworks!
 
 target 'SkyFloatingLabelTextFieldObjectiveCExample' do
-  pod 'SkyFloatingLabelTextField', '~> 3.0'
+  pod 'SkyFloatingLabelTextField', :git => 'https://github.com/sheff1422/SkyFloatingLabelTextField.git'
 end
